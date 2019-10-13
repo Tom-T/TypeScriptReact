@@ -1,3 +1,8 @@
+npx create-react-app mailhome --typescript
+yarn add react-router-dom
+yarn add @types/react-router-dom
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
