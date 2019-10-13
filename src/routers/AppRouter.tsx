@@ -41,7 +41,7 @@ const Nav: React.FC = () => {
         <Link to="/test/page1/">Test Page 1</Link>
       </li>
       <li>
-        <Link to="/test/page2/2">Test Page 2.2</Link>
+        <Link to="/test/page2/2/thisissomething">Test Page 2.2</Link>
       </li>
     </ul>
   </nav>
