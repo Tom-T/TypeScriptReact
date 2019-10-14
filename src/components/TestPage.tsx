@@ -1,19 +1,36 @@
 import React from 'react';
 import { Route, RouteComponentProps } from "react-router-dom"
 
-const Page1: React.FC = () => {
-  return (
-    <p>1</p>
-  )
+export default class Page1 extends React.Component {
+  formSubmission = (e: any) => {
+    e.preventDefault();
+    console.log(e)
+  }
+  render = () => {
+    return (
+      <div>
+        <h1>Page1 test</h1>
+        <form onSubmit={this.formSubmission}>
+        <input type="text" name="textname" />
+        <input type="submit" value="Go!" />
+        </form>
+      </div>
+  
+    )
+  }
 }
 
+
 //https://medium.com/@kaw2k/a-letter-of-appreciation-253ecab3f7d2
-interface Page2 extends RouteComponentProps<{ id: string, id2: string }> {};
-const Page2: React.FC<Page2> = ({ match } ) => {
+interface Page2 extends RouteComponentProps<{ id: string, id2: string }> { };
+const Page2: React.FC<Page2> = ({ match }) => {
+  console.log("search", match)
+
   return (
     <div>
       <p>2</p>
       <p>Value: {match.params.id}</p>
+      <p> test: {match.params.id2} </p>
       <p> test: {match.params.id2} </p>
     </div>
   )
@@ -28,5 +45,3 @@ const TestPage: React.FC = () => {
     </div>
   )
 }
-
-export default TestPage
