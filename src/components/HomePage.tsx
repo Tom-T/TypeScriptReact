@@ -1,77 +1,81 @@
 import React, { ReactPropTypes, SyntheticEvent } from "react";
 
-class Items extends React.Component {
-  render = () => {
-    return (
-      <Item></Item>
-    );
-  };
+interface ItemState {
+  items: string[];
 }
-class Item extends React.Component {
-  render = () => {
+
+class Item extends React.Component<{ itemText: string }> {
+  render() {
+    return <div>{this.props.itemText}</div>;
+  }
+}
+
+class Items extends React.Component<ItemState> {
+  render() {
     return (
       <div>
-        <p>Main page</p>
+        {this.props.items.map((item, index) => (
+          <Item key={index} itemText={item} />
+        ))}
       </div>
     );
-  };
+  }
 }
-class AddItem extends React.Component {
+
+export default class HomePage extends React.Component<{}, ItemState> {
   constructor(props: ReactPropTypes) {
     super(props);
     this.handleAddItem = this.handleAddItem.bind(this);
+    this.handleRemoveItem = this.handleRemoveItem.bind(this);
+    this.handleRemoveAll = this.handleRemoveAll.bind(this);
     this.state = {
       items: []
     };
   }
-
+  handleRemoveItem(e: SyntheticEvent) {
+    e.preventDefault();
+    this.setState(state => {
+      return { items: [] };
+    });
+  }
+  handleRemoveAll(e: SyntheticEvent) {
+    e.preventDefault();
+    this.setState(state => {
+      return { items: [] };
+    });
+  }
   handleAddItem(e: SyntheticEvent) {
     e.preventDefault();
     const target = e.target as typeof e.target & {
       newItem: { value: string };
     };
-    const newItem = target.newItem.value; // typechecks!
+    const newItem = target.newItem.value.trim(); // typechecks!
 
-    if (newItem) {
-      alert(newItem);
+    target.newItem.value = "";
+
+    if (!newItem) {
+      return alert("Please provide an item");
     }
+
+    this.setState(state => {
+      console.log("items: " + state.items);
+      return { items: state.items.concat(newItem) };
+    });
   }
   render = () => {
     return (
       <div>
-        <form onSubmit={this.handleAddItem}>
-          <input type="text" name="newItem" />
-          <button>Add Item</button>
-        </form>
-      </div>
-    );
-  };
-}
-
-interface NoteState {
-  notes: [];
-}
-
-export default class HomePage extends React.Component<{}, NoteState> {
-  // constructor(props: ReactPropTypes) {
-  //   super(props);
-  //   this.addNote = this.addNote.bind(this);
-  //   this.state = {
-  //     notes: []
-  //   };
-  // }
-  // // addNote() {
-  // //   // this.setState((state, props<ReactPropTypes> ) => {
-  // //   this.setState((state, props) => {
-  // //     return { notes: [...state.notes, props.notes] };
-  // //   });
-  // // }
-  render = () => {
-    return (
-      <div>
         <h1>Todo List</h1>
-        <Items />
-        <AddItem />
+        <div>
+          <Items items={this.state.items} />
+          {/* <Items items={this.state.items} handleRemoveItem={this.handleRemoveItem} /> */}
+        </div>
+        <div>
+          <form onSubmit={this.handleAddItem}>
+            <input type="text" name="newItem" />
+            <button>Add Item</button>
+          </form>
+        </div>
       </div>
     );
   };
