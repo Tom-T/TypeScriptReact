@@ -1,5 +1,4 @@
 import React, { ReactPropTypes, SyntheticEvent } from "react";
-import { string } from "prop-types";
 
 interface ItemState {
   items: string[];
