@@ -12,51 +12,42 @@ interface ItemStateFunc extends ItemState {
   handleCompletedToggle(e: SyntheticEvent): void;
 }
 
-class Item extends React.Component<{
+const Item = (props: {
   handleRemoveItem(e: SyntheticEvent): void;
   handleCompletedToggle(e: SyntheticEvent): void;
   itemText: string;
   itemCompleted: boolean;
   itemIndex: number;
-}> {
-  render() {
-    return (
-      <div>
-        <p
-          style={{textDecoration:!this.props.itemCompleted? "none" :  "line-through"}}
-        >
-          {this.props.itemText}
-        </p>
-        <button value={this.props.itemIndex} onClick={this.props.handleRemoveItem}>
-          {this.props.itemCompleted ? "Removed completed Task" : "Remove incomplete Task"}
-        </button>
+}) => {
+  return (
+    <div>
+      <p style={{ textDecoration: !props.itemCompleted ? "none" : "line-through" }}>{props.itemText}</p>
+      <button value={props.itemIndex} onClick={props.handleRemoveItem}>
+        {props.itemCompleted ? "Removed completed Task" : "Remove incomplete Task"}
+      </button>
 
-        <button value={this.props.itemIndex} onClick={this.props.handleCompletedToggle}>
-          {this.props.itemCompleted ? "Mark Incomplete" : "Mark Completed"}
-        </button>
-      </div>
-    );
-  }
-}
-
-class Items extends React.Component<ItemStateFunc> {
-  render() {
-    return (
-      <div>
-        {this.props.items.map((item, index) => (
-          <Item
-            key={index}
-            itemText={item.task}
-            itemCompleted={item.completed}
-            itemIndex={index}
-            handleRemoveItem={this.props.handleRemoveItem}
-            handleCompletedToggle={this.props.handleCompletedToggle}
-          />
-        ))}
-      </div>
-    );
-  }
-}
+      <button value={props.itemIndex} onClick={props.handleCompletedToggle}>
+        {props.itemCompleted ? "Mark Incomplete" : "Mark Completed"}
+      </button>
+    </div>
+  );
+};
+const Items = (props: ItemStateFunc) => {
+  return (
+    <div>
+      {props.items.map((item: { task: string; completed: boolean }, index: number) => (
+        <Item
+          key={index}
+          itemText={item.task}
+          itemCompleted={item.completed}
+          itemIndex={index}
+          handleRemoveItem={props.handleRemoveItem}
+          handleCompletedToggle={props.handleCompletedToggle}
+        />
+      ))}
+    </div>
+  );
+};
 
 export default class HomePage extends React.Component<{}, ItemState> {
   constructor(props: ReactPropTypes) {
@@ -118,7 +109,6 @@ export default class HomePage extends React.Component<{}, ItemState> {
       <div>
         <h1>Todo List</h1>
         <div>
-          {/* <Items items={this.state.items} /> */}
           <Items
             items={this.state.items}
             handleRemoveItem={this.handleRemoveItem}
