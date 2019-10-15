@@ -53,7 +53,7 @@ export default class HomePage extends React.Component<{}, ItemState> {
   state: ItemState = {
     items: []
   };
-  componentDidMount() {
+  componentDidMount = () => {
     console.log("Loading Data");
     try {
       const savedData: ItemState = JSON.parse(localStorage.getItem("Mydata") as string);
@@ -62,12 +62,12 @@ export default class HomePage extends React.Component<{}, ItemState> {
       return;
     }
   }
-  componentDidUpdate(prevState: ItemState) {
+  componentDidUpdate = (prevState: ItemState) => {
     console.log("Saving Data");
     const newData = JSON.stringify(this.state);
     if (JSON.stringify(prevState) !== newData) localStorage.setItem("Mydata", newData);
   }
-  handleCompletedToggle(e: SyntheticEvent) {
+  handleCompletedToggle = (e: SyntheticEvent) => {
     e.preventDefault();
     const thisIndex: number = parseInt(e.currentTarget.getAttribute("value") as string);
 
@@ -77,7 +77,7 @@ export default class HomePage extends React.Component<{}, ItemState> {
       return newState;
     });
   }
-  handleRemoveItem(e: SyntheticEvent) {
+  handleRemoveItem = (e: SyntheticEvent) => {
     e.preventDefault();
     let newSet: { task: string; completed: boolean }[] = [];
     newSet = this.state.items.filter((value: { task: string; completed: boolean }, index: number) => {
@@ -86,11 +86,11 @@ export default class HomePage extends React.Component<{}, ItemState> {
 
     this.setState(state => ({ items: newSet }));
   }
-  handleRemoveAll(e: SyntheticEvent) {
+  handleRemoveAll = (e: SyntheticEvent) => {
     e.preventDefault();
     this.setState(state => ({ items: [] }));
   }
-  handleAddItem(e: SyntheticEvent) {
+  handleAddItem = (e: SyntheticEvent) => {
     e.preventDefault();
     const target = e.target as typeof e.target & {
       newItem: { value: string };
