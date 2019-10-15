@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Header from "../components/HeaderModule";
 import App from "../components/App";
 import TestPage from "../components/TestPage";
+import "../styles/style.scss"
 
 
 class PageNotFound extends React.Component {
