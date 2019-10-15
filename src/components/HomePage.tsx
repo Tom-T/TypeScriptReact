@@ -50,18 +50,9 @@ const Items = (props: ItemStateFunc) => {
 };
 
 export default class HomePage extends React.Component<{}, ItemState> {
-  constructor(props: ReactPropTypes) {
-    super(props);
-    this.handleAddItem = this.handleAddItem.bind(this);
-    this.handleRemoveItem = this.handleRemoveItem.bind(this);
-    this.handleRemoveAll = this.handleRemoveAll.bind(this);
-    this.handleCompletedToggle = this.handleCompletedToggle.bind(this);
-    this.componentDidMount = this.componentDidMount.bind(this);
-    this.componentDidUpdate = this.componentDidUpdate.bind(this);
-    this.state = {
-      items: []
-    };
-  }
+  state: ItemState = {
+    items: []
+  };
   componentDidMount() {
     console.log("Loading Data");
     try {
