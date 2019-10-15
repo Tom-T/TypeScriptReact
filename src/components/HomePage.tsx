@@ -22,8 +22,11 @@ class Item extends React.Component<{
   render() {
     return (
       <div>
-        <p>{this.props.itemText}</p>
-        <p>{}</p>
+        <p
+          style={{textDecoration:!this.props.itemCompleted? "none" :  "line-through"}}
+        >
+          {this.props.itemText}
+        </p>
         <button value={this.props.itemIndex} onClick={this.props.handleRemoveItem}>
           {this.props.itemCompleted ? "Removed completed Task" : "Remove incomplete Task"}
         </button>
@@ -68,7 +71,7 @@ export default class HomePage extends React.Component<{}, ItemState> {
   }
   handleCompletedToggle(e: SyntheticEvent) {
     e.preventDefault();
-      const thisIndex: number = parseInt(e.currentTarget.getAttribute("value") as string);
+    const thisIndex: number = parseInt(e.currentTarget.getAttribute("value") as string);
 
     this.setState(state => {
       let newState = this.state;
