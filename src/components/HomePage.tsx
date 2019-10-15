@@ -77,15 +77,11 @@ export default class HomePage extends React.Component<{}, ItemState> {
       return (index as number) !== parseInt(e.currentTarget.getAttribute("value") as string);
     });
 
-    this.setState(state => {
-      return { items: newSet };
-    });
+    this.setState(state => ({ items: newSet }));
   }
   handleRemoveAll(e: SyntheticEvent) {
     e.preventDefault();
-    this.setState(state => {
-      return { items: [] };
-    });
+    this.setState(state => ({ items: [] }));
   }
   handleAddItem(e: SyntheticEvent) {
     e.preventDefault();
@@ -96,13 +92,9 @@ export default class HomePage extends React.Component<{}, ItemState> {
 
     target.newItem.value = "";
 
-    if (!newItem) {
-      return alert("Please provide an item");
-    }
+    if (!newItem) alert("Please provide an item");
 
-    this.setState(state => {
-      return { items: state.items.concat({ task: newItem, completed: false }) };
-    });
+    this.setState(state => ({ items: state.items.concat({ task: newItem, completed: false })}))
   }
   render = () => {
     return (
