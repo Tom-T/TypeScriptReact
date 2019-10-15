@@ -61,25 +61,23 @@ export default class App extends React.Component<{}, ItemState> {
     this.setState(state => ({ items: state.items.concat({ task: newItem, completed: false }) }));
   };
 
-  render = () => {
-    return (
+  render = () => (
+    <div>
+      <h1>Todo List</h1>
       <div>
-        <h1>Todo List</h1>
-        <div>
-          <Items
-            items={this.state.items}
-            handleRemoveItem={this.handleRemoveItem}
-            handleCompletedToggle={this.handleCompletedToggle}
-          />
-        </div>
-        <div>
-          <form onSubmit={this.handleAddItem}>
-            <input type="text" name="newItem" />
-            <button>Add Item</button>
-          </form>
-        </div>
-        <ModalWarning clearWarning={this.handleclearWarning} warningMessage={this.state.warningMessage} />
+        <Items
+          items={this.state.items}
+          handleRemoveItem={this.handleRemoveItem}
+          handleCompletedToggle={this.handleCompletedToggle}
+        />
       </div>
-    );
-  };
+      <div>
+        <form onSubmit={this.handleAddItem}>
+          <input type="text" name="newItem" />
+          <button>Add Item</button>
+        </form>
+      </div>
+      <ModalWarning clearWarning={this.handleclearWarning} warningMessage={this.state.warningMessage} />
+    </div>
+  );
 }
