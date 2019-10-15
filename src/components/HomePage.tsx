@@ -61,12 +61,12 @@ export default class HomePage extends React.Component<{}, ItemState> {
     } catch (e) {
       return;
     }
-  }
+  };
   componentDidUpdate = (prevState: ItemState) => {
     console.log("Saving Data");
     const newData = JSON.stringify(this.state);
     if (JSON.stringify(prevState) !== newData) localStorage.setItem("Mydata", newData);
-  }
+  };
   handleCompletedToggle = (e: SyntheticEvent) => {
     e.preventDefault();
     const thisIndex: number = parseInt(e.currentTarget.getAttribute("value") as string);
@@ -76,7 +76,7 @@ export default class HomePage extends React.Component<{}, ItemState> {
       newState.items[thisIndex].completed = !this.state.items[thisIndex].completed;
       return newState;
     });
-  }
+  };
   handleRemoveItem = (e: SyntheticEvent) => {
     e.preventDefault();
     let newSet: { task: string; completed: boolean }[] = [];
@@ -85,11 +85,11 @@ export default class HomePage extends React.Component<{}, ItemState> {
     });
 
     this.setState(state => ({ items: newSet }));
-  }
+  };
   handleRemoveAll = (e: SyntheticEvent) => {
     e.preventDefault();
     this.setState(state => ({ items: [] }));
-  }
+  };
   handleAddItem = (e: SyntheticEvent) => {
     e.preventDefault();
     const target = e.target as typeof e.target & {
@@ -102,7 +102,7 @@ export default class HomePage extends React.Component<{}, ItemState> {
     if (!newItem) alert("Please provide an item");
 
     this.setState(state => ({ items: state.items.concat({ task: newItem, completed: false }) }));
-  }
+  };
   render = () => {
     return (
       <div>
