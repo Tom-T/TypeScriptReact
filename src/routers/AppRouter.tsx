@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import Header from "../components/HeaderModule";
-import HomePage from "../components/HomePage";
+import App from "../components/App";
 import TestPage from "../components/TestPage";
 
 
@@ -19,7 +19,7 @@ export default class AppRouter extends React.Component {
         <BrowserRouter>
           <Header />
           <Switch>
-            <Route path="/" component={HomePage} exact={true} />
+            <Route path="/" component={App} exact={true} />
             <Route path="/test" component={TestPage} />
             <Route component={PageNotFound} />
           </Switch>
