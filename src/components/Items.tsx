@@ -1,7 +1,6 @@
 import React, { SyntheticEvent } from "react";
 import { ItemStateFunc } from "../interfaces/items";
 
-
 const Item = (props: {
   handleRemoveItem(e: SyntheticEvent): void;
   handleCompletedToggle(e: SyntheticEvent): void;
@@ -22,6 +21,7 @@ const Item = (props: {
     </div>
   );
 };
+
 const Items = (props: ItemStateFunc) => {
   return (
     <div>

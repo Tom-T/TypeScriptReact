@@ -1,22 +1,23 @@
-import React, { ReactPropTypes, SyntheticEvent } from "react";
-import {ItemState, ItemStateFunc} from "../interfaces/items"
-import Items from "./Items"
+import React, { SyntheticEvent } from "react";
+import { ItemState } from "../interfaces/items";
+import Items from "./Items";
+import ModalWarning from "./ModalWarning";
 
 export default class App extends React.Component<{}, ItemState> {
   state: ItemState = {
-    items: []
+    items: [],
+    modalIsOpen: false,
+    warningMessage: ""
   };
   componentDidMount = () => {
-    console.log("Loading Data");
     try {
       const savedData: ItemState = JSON.parse(localStorage.getItem("Mydata") as string);
-      if (savedData) this.setState(Prevstate => savedData);
+      if (savedData) this.setState(() => savedData);
     } catch (e) {
       return;
     }
   };
   componentDidUpdate = (prevState: ItemState) => {
-    console.log("Saving Data");
     const newData = JSON.stringify(this.state);
     if (JSON.stringify(prevState) !== newData) localStorage.setItem("Mydata", newData);
   };
@@ -43,6 +44,9 @@ export default class App extends React.Component<{}, ItemState> {
     e.preventDefault();
     this.setState(state => ({ items: [] }));
   };
+  handleclearWarning = () => {
+    this.setState(() => ({ warningMessage: "" }));
+  };
   handleAddItem = (e: SyntheticEvent) => {
     e.preventDefault();
     const target = e.target as typeof e.target & {
@@ -52,10 +56,11 @@ export default class App extends React.Component<{}, ItemState> {
 
     target.newItem.value = "";
 
-    if (!newItem) alert("Please provide an item");
+    if (!newItem) return this.setState(() => ({ warningMessage: "Please provide an item" }));
 
     this.setState(state => ({ items: state.items.concat({ task: newItem, completed: false }) }));
   };
+
   render = () => {
     return (
       <div>
@@ -73,6 +78,7 @@ export default class App extends React.Component<{}, ItemState> {
             <button>Add Item</button>
           </form>
         </div>
+        <ModalWarning clearWarning={this.handleclearWarning} warningMessage={this.state.warningMessage} />
       </div>
     );
   };
