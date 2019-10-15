@@ -56,21 +56,25 @@ export default class HomePage extends React.Component<{}, ItemState> {
     this.handleRemoveItem = this.handleRemoveItem.bind(this);
     this.handleRemoveAll = this.handleRemoveAll.bind(this);
     this.handleCompletedToggle = this.handleCompletedToggle.bind(this);
-    this.componentDidMount = this.componentDidMount.bind(this)
-    this.componentDidUpdate = this.componentDidUpdate.bind(this)
+    this.componentDidMount = this.componentDidMount.bind(this);
+    this.componentDidUpdate = this.componentDidUpdate.bind(this);
     this.state = {
       items: []
     };
   }
   componentDidMount() {
     console.log("Loading Data");
-    const savedData: ItemState = JSON.parse(localStorage.getItem("Mydata") as string);
-    if (savedData) this.setState((Prevstate) => savedData);
-
+    try {
+      const savedData: ItemState = JSON.parse(localStorage.getItem("Mydata") as string);
+      if (savedData) this.setState(Prevstate => savedData);
+    } catch (e) {
+      return;
+    }
   }
-  componentDidUpdate() {
+  componentDidUpdate(prevState: ItemState) {
     console.log("Saving Data");
-    localStorage.setItem("Mydata", JSON.stringify(this.state));
+    const newData = JSON.stringify(this.state);
+    if (JSON.stringify(prevState) !== newData) localStorage.setItem("Mydata", newData);
   }
   handleCompletedToggle(e: SyntheticEvent) {
     e.preventDefault();
