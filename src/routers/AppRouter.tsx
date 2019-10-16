@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Header from "../components/HeaderModule";
 import App from "../components/App";
 import TestPage from "../components/TestPage";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/style.scss"
 
 
@@ -19,11 +20,13 @@ export default class AppRouter extends React.Component {
       <div className="App">
         <BrowserRouter>
           <Header />
-          <Switch>
-            <Route path="/" component={App} exact={true} />
-            <Route path="/test" component={TestPage} />
-            <Route component={PageNotFound} />
-          </Switch>
+          <div>
+            <Switch>
+              <Route path="/" component={App} exact={true} />
+              <Route path="/test" component={TestPage} />
+              <Route component={PageNotFound} />
+            </Switch>
+          </div>
         </BrowserRouter>
       </div>
     );

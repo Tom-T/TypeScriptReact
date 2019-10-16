@@ -7,6 +7,7 @@ export interface ItemState {
   }[];
   modalIsOpen: boolean;
   warningMessage: string;
+  progress: number;
 }
 
 export interface ItemStateFunc {
