@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './static/index.css';
 import AppRouter from "./routers/AppRouter"
 import * as serviceWorker from './serviceWorker';
 

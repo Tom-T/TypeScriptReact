@@ -1,25 +1,34 @@
-import React from 'react';
-import { RouteComponentProps, BrowserRouter, Route, Switch, Link } from "react-router-dom"
-import HomePage from "../components/HomePage"
-import TestPage from "../components/TestPage"
-import {Header, PageNotFound} from "../components/HeaderComponent"
+import React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+
+import Header from "../components/HeaderModule";
+import App from "../components/App";
+import TestPage from "../components/TestPage";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/style.scss"
 
 
-
-const AppRouter: React.FC = () => {
-  return (
-    <div className="App">
-      <BrowserRouter>
-        <Header />
-        <Switch>
-          <Route path="/" component={HomePage} exact={true} />
-          <Route path="/test" component={TestPage} />
-          <Route component={PageNotFound} />
-        </Switch>
-      </BrowserRouter>
-    </div >
-  );
+class PageNotFound extends React.Component {
+  render = () => {
+    return <h1> Page not found!</h1>;
+  };
 }
 
-
-export default AppRouter;
+export default class AppRouter extends React.Component {
+  render = () => {
+    return (
+      <div className="App">
+        <BrowserRouter>
+          <Header />
+          <div>
+            <Switch>
+              <Route path="/" component={App} exact={true} />
+              <Route path="/test" component={TestPage} />
+              <Route component={PageNotFound} />
+            </Switch>
+          </div>
+        </BrowserRouter>
+      </div>
+    );
+  };
+}
