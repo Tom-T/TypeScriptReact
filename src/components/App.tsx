@@ -22,6 +22,7 @@ export default class App extends React.Component<{}, ItemState> {
   getPercentage = () => {
     const myComplete = this.state.items.filter(task => task.completed).length;
     const myTotal = this.state.items.length;
+    if (!myTotal) return 0;
     return myComplete ? Math.round((myComplete / myTotal) * 100) : 1;
   };
 
@@ -78,7 +79,7 @@ export default class App extends React.Component<{}, ItemState> {
 
   render = () => (
     <div className="container">
-      <ProgressBar className="fixed-bottom" animated now={this.getPercentage()}></ProgressBar>
+      <ProgressBar className="fixed-bottom" animated now={this.getPercentage()} />
       <div className="navbar navbar-dark bg-dark navbar-expand-md fixed-top sticky-top">
         <form onSubmit={this.handleAddItem}>
           <div className="d-inline-block">
@@ -87,12 +88,11 @@ export default class App extends React.Component<{}, ItemState> {
           <div className="d-inline-block">
             <button className="form-control">Add Item</button>
           </div>
-
         </form>
         <div className="float-bottom float-md-right">
-          <h1 >Todo List</h1>
-          </div>
+          <h1>Todo List</h1>
         </div>
+      </div>
       <div>
         <Items
           items={this.state.items}
