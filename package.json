@@ -24,7 +24,6 @@
     "node": "12.9.1"
   },
   "scripts": {
-    "run": "node src/",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
