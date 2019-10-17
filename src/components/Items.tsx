@@ -10,7 +10,7 @@ const returnStyle = (completed: boolean) => {
   } else {
     return {
       textDecoration: "line-through",
-      opacity: 0.55
+      opacity: 0.2
     } as CSSProperties;
   }
 };
@@ -22,7 +22,7 @@ const Item = (props: {
   itemCompleted: boolean;
   itemIndex: number;
 }) => (
-  <div>
+  <div className="py-2">
     <div className="card width-18em">
       <div className="card-title">
         {/* <h3>{props.itemCompleted ? "Completed Task" : "Incomplete Task"}</h3> */}
@@ -37,7 +37,7 @@ const Item = (props: {
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div className="card-body" id={props.itemIndex.toString()} onClick={props.handleCompletedToggle}>
+      <div className="card-body p-2" id={props.itemIndex.toString()} onClick={props.handleCompletedToggle}>
         <p className="card-text" style={returnStyle(!props.itemCompleted)}>
           {props.itemText}
         </p>
