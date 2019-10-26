@@ -20,8 +20,8 @@ export default class Header extends React.Component {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse " id="navbarSupportedContent">
-          <ul className="navbar-nav mr-4">
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav">
             <li className="nav-item">
               {" "}
               <Link className="nav-link" to="/">
@@ -30,8 +30,8 @@ export default class Header extends React.Component {
             </li>
             <li className="nav-item">
               {" "}
-              <Link className="nav-link" to="/test">
-                Test
+              <Link className="nav-link" to="/User">
+                UserPage
               </Link>
             </li>
           </ul>

@@ -3,10 +3,10 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import Header from "../components/HeaderModule";
 import App from "../components/App";
-import TestPage from "../components/TestPage";
-import "bootstrap/dist/css/bootstrap.min.css";
+import UserPage from "../components/Users";
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import "../styles/style.scss"
-
 
 class PageNotFound extends React.Component {
   render = () => {
@@ -23,7 +23,7 @@ export default class AppRouter extends React.Component {
           <div>
             <Switch>
               <Route path="/" component={App} exact={true} />
-              <Route path="/test" component={TestPage} />
+              <Route path="/User" component={UserPage} />
               <Route component={PageNotFound} />
             </Switch>
           </div>
