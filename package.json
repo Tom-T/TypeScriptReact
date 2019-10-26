@@ -17,11 +17,12 @@
     "react-modal": "^3.10.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.2.0",
+    "typeorm": "^0.2.20",
     "typescript": "3.6.4"
   },
   "engines": {
     "npm": "6.11.3",
-    "node": "12.9.1"
+    "node": "12.11.0"
   },
   "scripts": {
     "start": "react-scripts start",
