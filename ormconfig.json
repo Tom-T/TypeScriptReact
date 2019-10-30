@@ -1,8 +1,9 @@
 {
   "type": "mysql",
-  "host": "localhost",
+  "host": "sql9.freemysqlhosting.net",
   "port": 3306,
-  "username": "test",
-  "password": "test",
-  "database": "test"
+  "username": "sql9310179",
+  "password": "EphbuPN1Fd",
+  "database": "sql9310179"
 }
+// https: //www.freemysqlhosting.net/account/
