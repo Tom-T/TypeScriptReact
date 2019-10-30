@@ -6,16 +6,16 @@ export class People extends BaseEntity {
   @ObjectIdColumn()
   id: number | undefined;
 
-  @Column()
+  @Column("varchar:")
   firstName: string | undefined;
 
-  @Column()
+  @Column("varchar")
   lastName: string | undefined;
 
-  @Column()
+  @Column("varchar")
   email: string | undefined;
 
-  @Column()
+  @Column("varchar")
   password: string | undefined;
 
   static findByName(firstName: string, lastName: string) {
@@ -35,19 +35,20 @@ export class People extends BaseEntity {
       .getOne();
   }
 }
+
 @Entity()
 export class Owner extends People {
-  @Column()
+
+  @Column("boolean")
   Scanning: boolean | undefined; //If they do open/scan or not
-
-
 }
+
 @Entity()
 export class User extends People {
 
-  @Column()
+  @Column("int")
   Owner: number | undefined;  //Used to describe which homeowner this user belongs to.
 
-  @Column()
+  @Column("varchar")
   Box: string | undefined; //Optionally used to identify this user at the address. Eg "Unit 23", or "Apt J" (without Unit/Apt)
 }

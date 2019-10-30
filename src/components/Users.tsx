@@ -1,13 +1,14 @@
 import React from 'react';
 import { RouteComponentProps } from "react-router-dom"
-
+import { createConnection } from "typeorm";
+import { User } from "../models/people"
 
 interface iUserFormData extends HTMLFormElement {
-    first: HTMLFormElement,
-    last: HTMLFormElement,
-    email: HTMLFormElement,
-    password: HTMLFormElement,
-    confpass: HTMLFormElement
+  first: HTMLFormElement,
+  last: HTMLFormElement,
+  email: HTMLFormElement,
+  password: HTMLFormElement,
+  confpass: HTMLFormElement
 }
 
 class UserAdd extends React.Component {
@@ -18,10 +19,27 @@ class UserAdd extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(event: React.SyntheticEvent<HTMLFormElement>) {
+  async handleSubmit(event: React.SyntheticEvent<HTMLFormElement>) {
     event.preventDefault();
     const target = event.target as HTMLFormElement
     const elements = target as iUserFormData
+
+    const firstName = elements.first.value
+    const lastName = elements.last.value
+    const email = elements.email.value
+    const password = elements.password.value
+
+    createConnection().then(async connection => {
+      const newUser = new User();
+      newUser.firstName = firstName
+      newUser.lastName = lastName
+      newUser.email = email
+      newUser.password = password
+
+      await connection.manager.save(newUser);
+
+    })
+
         console.log(elements.email.value)
     // console.log(event.target.elements.email.value)
   }
