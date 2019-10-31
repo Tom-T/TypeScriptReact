@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import Header from "../components/HeaderModule";
 import App from "../components/App";
-import UserPage from "../components/Users";
+import User from "../components/Users";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import "../styles/style.scss"
@@ -23,7 +23,7 @@ export default class AppRouter extends React.Component {
           <div>
             <Switch>
               <Route path="/" component={App} exact={true} />
-              <Route path="/User" component={UserPage} />
+              <Route path="/user" component={User} />
               <Route component={PageNotFound} />
             </Switch>
           </div>
