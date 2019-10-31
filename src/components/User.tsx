@@ -11,36 +11,30 @@ interface iUserFormData extends HTMLFormElement {
   confpass: HTMLFormElement
 }
 
-class UserAdd extends React.Component {
-  constructor(props: RouteComponentProps) {
-    super(props);
-    this.state = { value: '' };
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+class UserAdd extends React.Component<{}, { value: string }> {
+  state = { value: "" };
 
   async handleSubmit(event: React.SyntheticEvent<HTMLFormElement>) {
     event.preventDefault();
-    const target = event.target as HTMLFormElement
-    const elements = target as iUserFormData
+    const target = event.target as HTMLFormElement;
+    const elements = target as iUserFormData;
 
-    const firstName = elements.first.value
-    const lastName = elements.last.value
-    const email = elements.email.value
-    const password = elements.password.value
+    const firstName = elements.first.value;
+    const lastName = elements.last.value;
+    const email = elements.email.value;
+    const password = elements.password.value;
 
     createConnection().then(async connection => {
       const newUser = new User();
-      newUser.firstName = firstName
-      newUser.lastName = lastName
-      newUser.email = email
-      newUser.password = password
+      newUser.firstName = firstName;
+      newUser.lastName = lastName;
+      newUser.email = email;
+      newUser.password = password;
 
       await connection.manager.save(newUser);
+    });
 
-    })
-
-        console.log(elements.email.value)
+    console.log(elements.email.value);
     // console.log(event.target.elements.email.value)
   }
 
@@ -51,31 +45,31 @@ class UserAdd extends React.Component {
           <div className="d-inline-block">
             <label>
               First:
-          <input type="text" name="first" placeholder="Firstname" />
+              <input type="text" name="first" placeholder="Firstname" />
             </label>
           </div>
           <div className="d-inline-block">
             <label>
               Last:
-          <input type="text" name="last" placeholder="Lastname" />
+              <input type="text" name="last" placeholder="Lastname" />
             </label>
           </div>
           <div className="d-inline-block">
             <label>
               Email:
-          <input type="text" name="email" placeholder="Email@domain.com" />
+              <input type="text" name="email" placeholder="Email@domain.com" />
             </label>
           </div>
           <div className="d-inline-block">
             <label>
               Password:
-          <input type="password" name="password" />
+              <input type="password" name="password" />
             </label>
           </div>
           <div className="d-inline-block">
             <label>
               Confirm Password:
-          <input type="password" name="confpass" />
+              <input type="password" name="confpass" />
             </label>
           </div>
           <div className="d-inline-block">

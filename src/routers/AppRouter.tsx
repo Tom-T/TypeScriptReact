@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import Header from "../components/HeaderModule";
 import App from "../components/App";
-import UserPage from "../components/Users";
+import UserPage from "../components/User";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import "../styles/style.scss"

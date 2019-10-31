@@ -3,6 +3,11 @@ yarn add react-router-dom
 yarn add @types/react-router-dom
 
 
+
+May have some helpful information:
+https://codeburst.io/typeorm-by-example-part-1-6d6da04f9f23
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
