@@ -10,14 +10,8 @@ interface iUserFormData extends HTMLFormElement {
   password: HTMLFormElement,
   confpass: HTMLFormElement
 }
-
-class UserAdd extends React.Component {
-  constructor(props: RouteComponentProps) {
-    super(props);
-    this.state = { value: '' };
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+class UserAdd extends React.Component<{}, { value: string }> {
+  state = { value: "" };
 
   async handleSubmit(event: React.SyntheticEvent<HTMLFormElement>) {
     event.preventDefault();
